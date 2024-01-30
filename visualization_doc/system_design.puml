@@ -1,0 +1,14 @@
+@startuml
+
+User -> HahowServer 
+HahowServer -> HahowDB
+HahowServer <- HahowDB
+User <- HahowServer
+
+HahowJob -> OriginApi: fetch data every period, it depends on the context
+HahowJob <- OriginApi
+
+HahowJob -> HahowDB: save data
+
+
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+
+class GetAllHerosApi {
+    id : int
+    name : str
+    image : str
+}
+
+class GetHeroApi {
+    id : int
+    name : str
+    image : str
+}
+
+class GetHeroProfileApi {
+    str : int
+    int : int
+    agi : int
+    luk : int
+}
+
+class AuthHeroApi {
+    name : str
+    password : str
+}
+
+@enduml
