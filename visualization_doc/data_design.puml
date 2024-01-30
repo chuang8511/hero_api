@@ -1,0 +1,23 @@
+@startuml
+
+entity Hero {
+    * id
+    name : str
+    image : str
+    encrytped_password : str
+    salt : str
+}
+
+entity Profile {
+    * id
+    str : int
+    int : int
+    agi : int
+    luk : int
+}
+
+
+Hero ||--|| Profile
+
+
+@enduml
