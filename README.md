@@ -15,6 +15,7 @@ TypeORM
 1. for object-relation mapping
 2. It will be easy to inject and collect data
 3. It needs to set the app-data-source.ts
+Doc: https://typeorm.io/
 
 ## Installation (to be written)
 1. git clone https://github.com/chuang8511/hero_api.git
