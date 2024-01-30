@@ -10,3 +10,14 @@ export const myDataSource = new DataSource({
     logging: true,
     synchronize: true,
 })
+
+export const initializeDataSource = async () => {
+    try {
+      await myDataSource.initialize();
+      console.log("Data Source has been initialized!");
+    } catch (err) {
+      console.error("Error during Data Source initialization:", err);
+      throw err;
+    }
+};
+
