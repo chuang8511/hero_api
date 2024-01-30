@@ -35,7 +35,8 @@ export async function getHeroProfile(heroId: number): Promise<ProfileResponse> {
                 }                
             }
         )
-        return data
+        data
+        return {...data, ...{ hero_id: heroId } }
     } catch (error) {
         if (axios.isAxiosError(error)) {
             return Promise.reject(error);
