@@ -5,6 +5,10 @@ export class Profile {
     @PrimaryGeneratedColumn()
     id: number;
   
+    @Index()
+    @Column()
+    hero_id: number;
+    
     @Column()
     str: number;
 

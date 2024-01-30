@@ -7,6 +7,10 @@ export class Hero {
   
     @Index()
     @Column()
+    id_from_external: number;
+
+    @Index()
+    @Column()
     name: string;
 
     @Column()
