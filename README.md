@@ -25,6 +25,20 @@ To speed up client side API, we can save data previously before users fetch API.
 - `$ npx ts-node src/crons/xxxJob.ts`
 Note: if using `$ node xxx.js`, it will not initialize DB first, which caused a bug when inserting data.
 
+# Structure
+- apis
+  - responses
+- controllers
+- crons
+- entity
+- persistences
+- routers
+- services
+
+## Why do I separate api response and entity in this case?
+We will have more flexibility to de-couple the relationship between API response and data model.
+So, I divide them into two different layers, which is persistences layer and APIs layer.
+
 
 # Installation
 1. git clone https://github.com/chuang8511/hero_api.git
