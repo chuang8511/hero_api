@@ -1,6 +1,6 @@
 @startuml
 
-entity Client {
+entity User {
     * id
     name
     encrypted_password
