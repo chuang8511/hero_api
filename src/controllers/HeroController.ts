@@ -21,7 +21,6 @@ export class HeroController {
                 const formatData = HeroController.buildJsonFormat(d)
                 res.push(formatData)
             }
-            console.log(res)
             return { "heroes": res }
         } else {
             const heros = await HeroPersistence.getHeros()
