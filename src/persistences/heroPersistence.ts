@@ -30,12 +30,18 @@ export class HeroPersistence {
         for (let i = 0; i < heros.length; i++) {
             let hero = heros[i]
             heroResponse.push({
-                "id": hero.id_from_external,
+                "id": hero.id_from_external.toString(),
                 "name": hero.name,
                 "image": hero.image
             })
         }
         return heroResponse
+    }
+
+    static getHerosAndProfiles = async () => {
+        const sql = HeroPersistence.heroQuery
+        return await myDataSource.query(sql)
+
     }
 
     static getHero = async (id: number) => {
@@ -44,7 +50,12 @@ export class HeroPersistence {
                 id_from_external: id
             }
         })
-        return { "id": hero?.id_from_external, "name": hero?.name, "image": hero?.image  }
+        return { "id": hero?.id_from_external.toString(), "name": hero?.name, "image": hero?.image  }
+    }
+
+    static getHeroAndProfile = async (id: string) => {
+        const sql = HeroPersistence.heroQuery + `where h.id_from_external = ${id}`
+        return await myDataSource.query(sql)
     }
 
     private static checkAndSaveData = async (responses: any[], orm: any, searchKey: string, searchVal: string, dataHash: { [key: string]: string }) => {
@@ -66,6 +77,19 @@ export class HeroPersistence {
             }
         }
     }
+
+    private static heroQuery: string = `
+    select
+    h.id_from_external
+    , h.name
+    , h.image
+    , p.agi
+    , p.int
+    , p.luk
+    , p.str
+from hero h
+join profile p on p.hero_id = h.id
+    `
 }
 
 

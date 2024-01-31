@@ -10,7 +10,7 @@
     "start": "node dist/index.js",
     "prejob": "npm run build",
     "job": " npx ts-node src/crons/getHeroDataJob.ts",
-    "preserve": "npm run build && npm run register_user",
+    "preserve": "npm run build",
     "serve": "nodemon src/index.ts",
     "test": "jest",
     "test:watch": "jest --watchAll"

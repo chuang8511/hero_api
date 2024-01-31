@@ -47,6 +47,8 @@ So, I divide them into two different layers, which is persistences layer and API
 4. `$ npm run job` -> cron jobs to fetch data
 5. `$ npm run serve` -> API server
 
+Note: please remeber to register the user first by `$ npm run register_user`
+
 ## How to set up your local DB?
 1. Download PostgreSQL
 2. Set src/app-data-source.ts with your user_name & database.
