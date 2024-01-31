@@ -4,7 +4,7 @@ import { AuthenticatePersistence } from "../persistences/authenticatePersistence
 export class HeroController {
     static getAllHeros = async () => {
         const heros = await HeroPersistence.getHeros()
-        return { "heros": heros }
+        return { "heroes": heros }
     }
 
     static getHero = async (id: number) => {
