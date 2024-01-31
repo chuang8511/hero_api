@@ -1,4 +1,47 @@
-# Libraries
+# Installation (我們該如何跑起這個 server)
+1. git clone https://github.com/chuang8511/hero_api.git
+2. npm install
+3. Set up your local DB.
+4. please remeber to register the user first by `$ npm run register_user`
+5. `$ npm run job` -> cron jobs to fetch data
+6. `$ npm run serve` -> API server
+
+## How to set up your local DB?
+1. Download PostgreSQL
+2. Set src/app-data-source.ts with your user_name & database.
+
+### PostgreSQL command
+1. `$ psql postgres` in your terminal, you will access to postgres server
+2. `postgres=# create database your_database_name;`, it will create a db for you.
+3. `postgres=# \q`, it will exit postgres server
+
+
+# Structure (專案的架構，API server 的架構邏輯)
+### Not Api server
+- apis (To call external apis)
+  - responses (To format the response from external apis)
+- crons (The jobs to fetch data in a period)
+### Api server
+- controllers (To define which logic/persistence/service to access.)
+- routers (To map endpoint and controller/action)
+
+### data
+- entity (ORM to make the data easy to maintain)
+- persistences (To process the data logic)
+- data (To save data by patch)
+
+### business logic (Or renaming it as domain model)
+- services (To process the business logic)
+
+
+#### Note
+1. Why do I separate api response and entity in this case?
+We will have more flexibility to de-couple the relationship between API response and data model.
+So, I divide them into two different layers, which is persistences layer and APIs layer.
+2. 
+
+
+# Libraries (你對於所有使用到的第三方 library 的理解，以及他們的功能簡介)
 ## express
 - The framework to build routes and API server.
 
@@ -25,35 +68,15 @@ To speed up client side API, we can save data previously before users fetch API.
 - `$ npx ts-node src/crons/xxxJob.ts`
 Note: if using `$ node xxx.js`, it will not initialize DB first, which caused a bug when inserting data.
 
-# Structure
-- apis
-  - responses
-- controllers
-- crons
-- entity
-- persistences
-- routers
-- services
 
-## Why do I separate api response and entity in this case?
-We will have more flexibility to de-couple the relationship between API response and data model.
-So, I divide them into two different layers, which is persistences layer and APIs layer.
+# 你在程式碼中寫註解的原則，遇到什麼狀況會寫註解
+I do not write the command unless there are legacy that the logic are hard to be explained by code.
+Normally, I write the code that can explain the logic.
 
 
-# Installation
-1. git clone https://github.com/chuang8511/hero_api.git
-2. npm install
-3. Set up your local DB.
-4. `$ npm run job` -> cron jobs to fetch data
-5. `$ npm run serve` -> API server
-
-Note: please remeber to register the user first by `$ npm run register_user`
-
-## How to set up your local DB?
-1. Download PostgreSQL
-2. Set src/app-data-source.ts with your user_name & database.
-
-### PostgreSQL command
-1. `$ psql postgres` in your terminal, you will access to postgres server
-2. `postgres=# create database your_database_name;`, it will create a db for you.
-3. `postgres=# \q`, it will exit postgres server
+# 在這份專案中你遇到的困難、問題，以及解決的方法
+1. About route
+I am surprised that authenticated api is GET.
+I do not know how to differentiate the same route but differet header.
+But, I have multiple layers to deal with this kind of situation.
+So, I can deal with this problem in the Route layer.
