@@ -1,11 +1,16 @@
 @startuml
 
+entity User {
+    * id
+    name
+    encrypted_password
+    salt
+}
+
 entity Hero {
     * id
     name : str
     image : str
-    encrytped_password : str
-    salt : str
 }
 
 entity Profile {
