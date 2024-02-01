@@ -21,12 +21,10 @@ export class HeroController {
                 const formatData = HeroController.buildJsonFormat(d)
                 res.push(formatData)
             }
-            console.log(2)
-            console.log(res)
             return { "heroes": res }
         } else {
             const heros = await HeroPersistence.getHeros()
-            return { "heros": heros }
+            return { "heroes": heros }
         }
     }
 
@@ -37,8 +35,8 @@ export class HeroController {
             const data = await HeroPersistence.getHeroAndProfile(id)
             return HeroController.buildJsonFormat(data)
         } else {
-            const heros = await HeroPersistence.getHeros()
-            return { "heros": heros }
+            const data = await HeroPersistence.getHero(parseInt(id))
+            return data
         }
     }
 
