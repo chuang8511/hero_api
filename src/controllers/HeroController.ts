@@ -4,7 +4,7 @@ import { AuthenticatePersistence } from "../persistences/authenticatePersistence
 export class HeroController {
     static getAllHeros = async () => {
         const heros = await HeroPersistence.getHeros()
-        return { "heros": heros }
+        return { "heroes": heros }
     }
 
     static getHero = async (id: number) => {
@@ -24,7 +24,7 @@ export class HeroController {
             return { "heroes": res }
         } else {
             const heros = await HeroPersistence.getHeros()
-            return { "heros": heros }
+            return { "heroes": heros }
         }
     }
 
@@ -35,13 +35,12 @@ export class HeroController {
             const data = await HeroPersistence.getHeroAndProfile(id)
             return HeroController.buildJsonFormat(data)
         } else {
-            const heros = await HeroPersistence.getHeros()
-            return { "heros": heros }
+            const data = await HeroPersistence.getHero(parseInt(id))
+            return data
         }
     }
 
     private static buildJsonFormat = (data: any) => {
-    
         return {
             "id": data.id_from_external.toString(),
             "name": data.name,
