@@ -33,7 +33,15 @@
 ### business logic (Or renaming it as domain model)
 - services (To process the business logic)
 
-### test code (It will be good to increase the test coverage to some extent.)
+#### Note
+1. Why do I separate api response and entity in this case?
+We will have more flexibility to de-couple the relationship between API response and data model.
+So, I divide them into two different layers, which is persistences layer and APIs layer.
+
+
+
+# About test code
+#### It will be good to increase the test coverage to some extent.
 ```
 - tests
 -- apis
@@ -43,14 +51,6 @@
 Note
 - Because of time limitation, I will only do the test of the controller, which contains more logics in this projects.
 - I have used stub/mock skills in the controller test code. So, I decide to skip other test code first.
-
-
-#### Note
-1. Why do I separate api response and entity in this case?
-We will have more flexibility to de-couple the relationship between API response and data model.
-So, I divide them into two different layers, which is persistences layer and APIs layer.
-2. 
-
 
 # Libraries (你對於所有使用到的第三方 library 的理解，以及他們的功能簡介)
 ## express
