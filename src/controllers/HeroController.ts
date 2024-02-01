@@ -21,6 +21,8 @@ export class HeroController {
                 const formatData = HeroController.buildJsonFormat(d)
                 res.push(formatData)
             }
+            console.log(2)
+            console.log(res)
             return { "heroes": res }
         } else {
             const heros = await HeroPersistence.getHeros()
@@ -41,7 +43,6 @@ export class HeroController {
     }
 
     private static buildJsonFormat = (data: any) => {
-    
         return {
             "id": data.id_from_external.toString(),
             "name": data.name,
