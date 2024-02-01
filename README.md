@@ -17,6 +17,12 @@
 
 
 # Structure (專案的架構，API server 的架構邏輯)
+## About system design
+![Alt text](./image-1.png)
+
+## About database design
+![Alt text](./image-2.png)
+
 ### Not Api server
 - apis (To call external apis)
   - responses (To format the response from external apis)
@@ -78,9 +84,6 @@ To speed up client side API, we can save data previously before users fetch API.
 ### How to run the job?
 - `$ npx ts-node src/crons/xxxJob.ts`
 Note: if using `$ node xxx.js`, it will not initialize DB first, which caused a bug when inserting data.
-
-![Alt text](image.png)
-
 
 # 你在程式碼中寫註解的原則，遇到什麼狀況會寫註解
 I do not write the command unless there are legacy that the logic are hard to be explained by code.
