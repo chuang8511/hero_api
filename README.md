@@ -79,6 +79,8 @@ To speed up client side API, we can save data previously before users fetch API.
 - `$ npx ts-node src/crons/xxxJob.ts`
 Note: if using `$ node xxx.js`, it will not initialize DB first, which caused a bug when inserting data.
 
+![Alt text](image.png)
+
 
 # 你在程式碼中寫註解的原則，遇到什麼狀況會寫註解
 I do not write the command unless there are legacy that the logic are hard to be explained by code.
