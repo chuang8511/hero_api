@@ -1,14 +1,13 @@
 @startuml
 
-User -> HahowServer 
-HahowServer -> HahowDB
-HahowServer <- HahowDB
-User <- HahowServer
+User -> HahowServer: request hero data
+HahowServer <-> HahowDB: fetch data from persistence DB.
+User <- HahowServer: response hero data
 
-HahowJob -> OriginApi: fetch data every period, it depends on the context
-HahowJob <- OriginApi
+HahowJob <-> OriginApi: fetch data every period, it depends on the context
 
-HahowJob -> HahowDB: save data
+HahowJob <-> Cache: fetch the latest id of saved data
+HahowJob -> HahowDB: save the new data that have not been saved
 
 
 @enduml

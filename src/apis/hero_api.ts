@@ -24,7 +24,28 @@ export async function getHeros(): Promise<HeroResponse[]> {
     }
 }
 
-export async function getHeroProfile(heroId: number): Promise<ProfileResponse> {
+export async function getHero(id: string): Promise<HeroResponse> {
+    try {
+        const { data, status } = await axios.get(
+            apiUrls.SINGEL_HEROES_API_URL(id),
+            {
+                headers: {
+                    "Accept": 'application/json',
+                    "Content-Type": 'application/json'
+                }
+            }
+        )
+        return data 
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            return Promise.reject(error);
+        } else {
+            return Promise.reject('An unexpected error occurred');
+        }
+    }
+}
+
+export async function getHeroProfile(heroId: string): Promise<ProfileResponse> {
     try {
         const { data, status } = await axios.get(
             apiUrls.HERO_PROFILE_API_URL(heroId),
