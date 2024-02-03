@@ -1,27 +1,32 @@
 # Installation (我們該如何跑起這個 server)
-1. git clone https://github.com/chuang8511/hero_api.git
-2. npm install
-3. Set up your local DB.
-4. please remeber to register the user first by `$ npm run register_user`
-5. `$ npm run job` -> cron jobs to fetch data
-6. `$ npm run serve` -> API server
+- git clone https://github.com/chuang8511/hero_api.git
+- npm install
+- Set up your local DB.
+- please remeber to register the user first by `$ npm run register_user`
+- start your local redis server
+- `$ npm run job` -> cron jobs to fetch data
+- `$ npm run serve` -> API server
 
 ## How to set up your local DB?
-1. Download PostgreSQL
-2. Set src/app-data-source.ts with your user_name & database.
+- Download PostgreSQL
+- Set src/app-data-source.ts with your user_name & database.
 
 ### PostgreSQL command
-1. `$ psql postgres` in your terminal, you will access to postgres server
-2. `postgres=# create database your_database_name;`, it will create a db for you.
-3. `postgres=# \q`, it will exit postgres server
+- `$ psql postgres` in your terminal, you will access to postgres server
+- `postgres=# create database your_database_name;`, it will create a db for you.
+- `postgres=# \q`, it will exit postgres server
+
+### How to start redis server?
+- `$ brew install redis`
+- `$ brew services start redis`
 
 
 # Structure (專案的架構，API server 的架構邏輯)
 ## About system design
-![Alt text](./image-1.png)
+![Alt text](./visualization_doc/all_system_design.puml)
 
 ## About database design
-![Alt text](./image-2.png)
+![Alt text](./visualization_doc/data_design.png)
 
 ### Not Api server
 - apis (To call external apis)
