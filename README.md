@@ -23,10 +23,10 @@
 
 # Structure (專案的架構，API server 的架構邏輯)
 ## About system design
-![Alt text](./visualization_doc/all_system_design.puml)
+![Alt text](./visualization_doc/all_system_design.png)
 
 ## About database design
-![Alt text](./visualization_doc/data_design.png)
+![Alt text](./visualization_doc/hero_profile_data_table.png)
 
 ### Not Api server
 - apis (To call external apis)
