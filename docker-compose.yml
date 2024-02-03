@@ -1,0 +1,18 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis  
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: hahow_project_dev
+      POSTGRES_USER: c.huang
+      POSTGRES_PASSWORD: hahow_project
+    ports:
+      - "1311:5432"
+  redis:
+    image: redis:latest
