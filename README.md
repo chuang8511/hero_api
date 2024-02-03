@@ -32,6 +32,7 @@
 - apis (To call external apis)
   - responses (To format the response from external apis)
 - crons (The jobs to fetch data in a period)
+- cache (The key-value noSQL to save the CPU resources)
 ### Api server
 - controllers (To define which logic/persistence/service to access.)
 - routers (To map endpoint and controller/action)
