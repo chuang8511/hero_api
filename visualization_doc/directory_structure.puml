@@ -1,0 +1,33 @@
+@startuml
+
+class Persistences
+class Cache
+class PersistenceDB
+class TemporaryDB
+class User
+class Apis
+class Responses
+class Entity
+class Router
+class Service
+class Controller {
+    method
+}
+class BusinessLogic
+
+User -> Router
+Router -> Controller
+
+Controller <--> Persistences
+Controller --> Service
+Controller <--> Cache
+Controller <--> Apis
+Apis <--> Responses
+
+Persistences <--> Entity
+Persistences <--> PersistenceDB
+Cache --> TemporaryDB
+
+Service --> BusinessLogic
+
+@enduml
