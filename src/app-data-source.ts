@@ -1,13 +1,15 @@
 import { DataSource } from "typeorm"
 
+
 export const myDataSource = new DataSource({
     type: "postgres",
-    host: "localhost", // local
+    // host: "localhost", // local
     // host: "postgres", // container setting
+    host: process.env.NODE_ENV === "development" ? "postgres" : "localhost",
     port: 5432,
     username: "c.huang",
     database: "hahow_project_dev",
-    // password: "hahow_project", // container setting
+    password: "hahow_project", // container setting
     entities: ["src/entity/*.ts"],
     logging: true,
     synchronize: true,

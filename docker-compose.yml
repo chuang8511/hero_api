@@ -1,11 +1,39 @@
 version: '3'
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.app
     ports:
       - "3000:3000"
     depends_on:
-      - redis  
+      - redis 
+      - postgres
+      - cron
+      - preset-data
+    environment:
+      NODE_ENV: development
+  cron:
+    build:
+      context: .
+      dockerfile: Dockerfile.cron
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      NODE_ENV: development
+  preset-data:
+    build:
+      context: .
+      dockerfile: Dockerfile.data
+    ports:
+      - "3002:3002"
+    depends_on:
+      - postgres
+    environment:
+      NODE_ENV: development
   postgres:
     image: postgres:latest
     environment:
@@ -14,5 +42,9 @@ services:
       POSTGRES_PASSWORD: hahow_project
     ports:
       - "1311:5432"
+    volumes:
+      - database:/data/db
   redis:
     image: redis:latest
+volumes:
+  database:

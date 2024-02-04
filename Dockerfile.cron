@@ -18,5 +18,4 @@ EXPOSE 5432
 EXPOSE 1311
 EXPOSE 6379
 
-CMD [ "npm", "run", "serve"]
-# CMD [ "npm", "run", "job"]
+CMD [ "npm", "run", "job"]

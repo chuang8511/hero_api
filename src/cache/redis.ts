@@ -1,13 +1,17 @@
 import { createClient } from 'redis';
 
 export const initializeCache = async () => {
-    const client = createClient({
-        // container setting
-        // socket: { 
-        //     host: 'redis',
-        //     port: 6379,
-        // }
-    });
+    
+    let redisSocket = {};
+
+    if (process.env.NODE_ENV === "development") {
+        redisSocket = {
+            host: 'redis',
+            port: 6379,
+        }
+    }
+
+    const client = createClient({ socket: redisSocket });
 
     client.on('error', err => console.log('Redis Client Error', err));
 
