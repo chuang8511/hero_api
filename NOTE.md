@@ -65,3 +65,58 @@ Doc:
 
 `$ docker exec -it postgres-123 psql -U postgres`
 - get into container and access to postgres server.
+
+docker push
+1. tag the image 
+- d tag hero_api-app chunhao1811/hero_api-app
+- docker tag firstimage YOUR_DOCKERHUB_NAME/firstimage
+- docker push YOUR_DOCKERHUB_NAME/firstimage
+
+# About K8S
+https://youtu.be/s_o8dwzRlu4?si=3hdd3cUKonh2xAR0&t=2300
+brew install minikube
+
+minikube start
+minikube status
+
+kubectl depends on minikube
+So, brew install minikube, it also downloads kubectl
+kubectl get node
+
+
+https://kubernetes.io/docs/concepts/configuration/configmap/#configmap-object
+- db-config.yml
+
+https://kubernetes.io/docs/concepts/configuration/secret/#use-case-dotfiles-in-a-secret-volume
+- db-secret.yml
+
+
+https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#creating-a-deployment
+- db.yml
+
+Service
+- https://kubernetes.io/docs/concepts/services-networking/service/#service%E3%81%AE%E5%AE%9A%E7%BE%A9
+
+Random
+- It is a good practice to set the labels for the pods
+  - { app: service_application_name }
+
+
+  
+```
+  (base) c.huang@MAC-TW0024 k8s-in-1-hour % kubectl apply -f mongo-secret.yaml 
+secret/mongo-secret created
+(base) c.huang@MAC-TW0024 k8s-in-1-hour % kubectl apply -f mongo-config.yaml 
+configmap/mongo-config created
+(base) c.huang@MAC-TW0024 k8s-in-1-hour % kubectl apply -f mongo.yaml       
+deployment.apps/mongo-deployment created
+service/mongo-service created
+```
+
+service -> Pod
+![Alt text](./note_image/image-1.png)
+
+
+minikube cli: start up/delete the cluster
+kubectl cli: configure the Minikube cluster
+pod is the abstraction of container
