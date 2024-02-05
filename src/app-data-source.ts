@@ -3,13 +3,11 @@ import { DataSource } from "typeorm"
 
 export const myDataSource = new DataSource({
     type: "postgres",
-    // host: "localhost", // local
-    // host: "postgres", // container setting
-    host: process.env.NODE_ENV === "development" ? "postgres" : "localhost",
+    host: process.env.DB_HOST || 'localhost',
     port: 5432,
-    username: "c.huang",
-    database: "hahow_project_dev",
-    password: "hahow_project", // container setting
+    username: process.env.DB_USER || "c.huang",
+    database: process.env.DB_NAME || "hahow_project_dev",
+    password: process.env.DB_PASSWORD || "hahow_project",
     entities: ["src/entity/*.ts"],
     logging: true,
     synchronize: true,

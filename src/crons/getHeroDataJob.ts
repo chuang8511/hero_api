@@ -11,6 +11,7 @@ const jobSchedule = '*/5 * * * * *';
 
 const cronJob = cron.schedule(jobSchedule, async () => {
   try {
+      console.log("Fetch API job is running")
       const client = await initializeCache()
       const latest_hero_id = await client.get("latest_hero_id")
 

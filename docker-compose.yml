@@ -12,7 +12,12 @@ services:
       - cron
       - preset-data
     environment:
-      NODE_ENV: development
+      DB_HOST: postgres
+      DB_USER: c.huang
+      DB_NAME: hahow_project_dev
+      DB_PASSWORD: hahow_project
+      CACHE_HOST: redis
+      CACHE_PORT: 6379
   cron:
     build:
       context: .
@@ -23,7 +28,12 @@ services:
       - postgres
       - redis
     environment:
-      NODE_ENV: development
+      DB_HOST: postgres
+      DB_USER: c.huang
+      DB_NAME: hahow_project_dev
+      DB_PASSWORD: hahow_project
+      CACHE_HOST: redis
+      CACHE_PORT: 6379      
   preset-data:
     build:
       context: .
@@ -33,7 +43,12 @@ services:
     depends_on:
       - postgres
     environment:
-      NODE_ENV: development
+      DB_HOST: postgres
+      DB_USER: c.huang
+      DB_NAME: hahow_project_dev
+      DB_PASSWORD: hahow_project
+      CACHE_HOST: redis
+      CACHE_PORT: 6379      
   postgres:
     image: postgres:latest
     environment:
@@ -41,7 +56,7 @@ services:
       POSTGRES_USER: c.huang
       POSTGRES_PASSWORD: hahow_project
     ports:
-      - "1311:5432"
+      - "5432:5432"
     volumes:
       - database:/data/db
   redis:
