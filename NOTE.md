@@ -69,6 +69,7 @@ Doc:
 docker push
 1. tag the image 
 - d tag hero_api-app chunhao1811/hero_api-app
+- d push chunhao1811/hero_api-app
 - docker tag firstimage YOUR_DOCKERHUB_NAME/firstimage
 - docker push YOUR_DOCKERHUB_NAME/firstimage
 
@@ -120,3 +121,16 @@ service -> Pod
 minikube cli: start up/delete the cluster
 kubectl cli: configure the Minikube cluster
 pod is the abstraction of container
+
+In postgres pod
+k exec -it pod/postgres-6798dc8575-t5f5n -- /bin/bash
+psql -U c.huang -d hahow_project_dev
+
+app-data-source.ts
+host should align to service name in postgres.yaml
+
+Open the tunnel for the pod
+m service apiapp-service
+ref: 
+  - https://hackmd.io/6Q-UKmWcQuqx6I5NkIUQlQ?view
+  - https://github.com/tall15421542/Learning/tree/main/grpc-experiment?fbclid=IwAR0HOpB2DL0Ew4pBEU99HucPYcxN1x1b1W7KMdaEE-reVIbW8mKC_5JNC5c#how-to-start-the-greeter-client--greeter-server
