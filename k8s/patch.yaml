@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: apiapp
+  name: patch
   labels:
-    app: apiapp
+    app: patch
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: apiapp
+      app: patch
   template:
     metadata:
       labels:
-        app: apiapp
+        app: patch
     spec:
       containers:
-      - name: apiapp
-        image: chunhao1811/hero_api-app:latest
+      - name: patch
+        image: chunhao1811/hero_api-preset-data:latest
         ports:
-        - containerPort: 3000
+        - containerPort: 3002
         env: 
         - name: DB_USER
           valueFrom:
@@ -40,17 +40,26 @@ spec:
             configMapKeyRef:
               name: postgres-config
               key: postgres-url
+        - name: CACHE_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: redis-config
+              key: host
+        - name: CACHE_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: redis-config
+              key: port
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: apiapp-service
+  name: patch
 spec:
-  type: NodePort
   selector:
-    app: apiapp
+    app: patch
   ports:
     - protocol: TCP
-      port: 3000
-      targetPort: 3000
-      nodePort: 30100
+      port: 3001
+      targetPort: 3001
