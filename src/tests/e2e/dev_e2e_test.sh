@@ -53,7 +53,7 @@ echo Fail to get authenticated id $i hero
   curl -H "Accept: application/json" \
   -H "Content-Type: application/json" \
   -H "Name: hahow" \
-  -H "Password: rocks" \
+  -H "Password: rocksadasda" \
   -X GET http://localhost:3000/heroes/1
 echo 
 echo

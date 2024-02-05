@@ -55,7 +55,9 @@ export class HeroPersistence {
 
     static getHeroAndProfile = async (id: string) => {
         const sql = HeroPersistence.heroQuery + `where h.id_from_external = ${id}`
-        return await myDataSource.query(sql)
+        console.log(sql)
+        const result = await myDataSource.query(sql)
+        return result[0]
     }
 
     private static checkAndSaveData = async (responses: any[], orm: any, searchKey: string, searchVal: string, dataHash: { [key: string]: string }) => {
