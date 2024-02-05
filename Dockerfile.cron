@@ -1,13 +1,15 @@
 FROM node:19
 
 WORKDIR /usr/src/app
+
+RUN apt-get update && \
+    apt-get install -y vim && \
+    apt-get install -y redis-server postgresql-client && \
+    rm -rf /var/lib/apt/lists/*
+
 COPY package*.json ./
 
 RUN npm install
-
-RUN apt-get update && \
-    apt-get install -y redis-server postgresql-client && \
-    rm -rf /var/lib/apt/lists/*
 
 COPY . .
 

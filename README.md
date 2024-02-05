@@ -1,5 +1,5 @@
 # Installation (我們該如何跑起這個 server)
-There are two ways to run this server with and without container
+There are three ways to run this server with and without container
 Please clone the code first!
 - git clone https://github.com/chuang8511/hero_api.git
 
@@ -26,6 +26,18 @@ Please clone the code first!
     1. preset username and password for the users
     2. run the cron job
     3. run the server
+
+## 3. Using Cluster
+- Please download the latest minikube.
+  - `$ brew install minikube`
+- Please start your cluster
+  - `$ minikube start`
+- Please build the pods/ services/ deployments
+  - `$ sh k8s/build.sh`
+- Please open the apiapp tunnel.
+  - `$ minikube service apiapp-service`
+- Please check the ip and port that service opens for external
+
 
 ### How to easily test?
 - `$ sh src/tests/e2e/dev_e2e_test.sh`, it use curl to fetch API server.

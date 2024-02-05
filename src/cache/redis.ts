@@ -2,12 +2,13 @@ import { createClient } from 'redis';
 
 export const initializeCache = async () => {
     
+
     let redisSocket = {};
 
-    if (process.env.NODE_ENV === "development") {
+    if (process.env.CACHE_HOST && process.env.CACHE_PORT) {
         redisSocket = {
-            host: 'redis',
-            port: 6379,
+            host: process.env.CACHE_HOST,
+            port: process.env.CACHE_PORT,
         }
     }
 

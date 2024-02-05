@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apiapp
+  labels:
+    app: apiapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apiapp
+  template:
+    metadata:
+      labels:
+        app: apiapp
+    spec:
+      containers:
+      - name: apiapp
+        image: chunhao1811/hero_api-app:latest
+        ports:
+        - containerPort: 3000
+        env: 
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: postgres-user
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: postgres-db
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: postgres-password
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: postgres-url
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apiapp-service
+spec:
+  type: NodePort
+  selector:
+    app: apiapp
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30100

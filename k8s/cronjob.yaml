@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cronjob
+  labels:
+    app: cronjob
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cronjob
+  template:
+    metadata:
+      labels:
+        app: cronjob
+    spec:
+      containers:
+      - name: cronjob
+        image: chunhao1811/hero_api-cron:latest
+        ports:
+        - containerPort: 3001
+        env: 
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: postgres-user
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: postgres-db
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: postgres-password
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: postgres-url
+        - name: CACHE_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: redis-config
+              key: host
+        - name: CACHE_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: redis-config
+              key: port
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cronjob
+spec:
+  selector:
+    app: cronjob
+  ports:
+    - protocol: TCP
+      port: 3001
+      targetPort: 3001
